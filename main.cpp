@@ -1,10 +1,14 @@
 #include <iostream>
+#include <cstring>
 #include <libpq-fe.h>
 #include "Conexion.cpp"
 
 using namespace std;
 
-int main()
+
+#define VERSION "Version 1.0 Fecha y hora de compilación: " __DATE__ " " __TIME__ ;
+
+int main(int argc, char* argv[])
 {
 
 cout << "INTEGRANTES: " << endl;
@@ -16,10 +20,15 @@ Conexion cn ;
 cn.conectar();
 
 
-/*cn.consulta("SELECT * FROM cursos");*/
 
+if(strcmp(argv[1], "-s") == 0){
 cn.consulta("SELECT c.asignatura AS ASIGNATURA,ROUND(AVG(a.nota),5) AS PROMEDIO, ROUND(STDDEV(a.nota),5) AS DESVIACION from asignaturas_cursadas a, cursos c WHERE a.curso_id=c.curso_id GROUP BY c.asignatura");
+}
+else if(strcmp(argv[1],"-v") == 0){
+cout << VERSION ;
+cout << endl;
 
+}
 
 cn.desconectar();
 
