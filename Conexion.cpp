@@ -17,7 +17,8 @@ class Conexion{
  void consulta(const char *consulta);
  void CrearVista(const char *consulta); 
  void ExportarArchivo();   
- void desconectar();   
+ void desconectar();
+ void DestruirVista();   
 
 };
 
@@ -92,4 +93,9 @@ void Conexion::desconectar(){
 
 cout<<endl<<"Conexión finalizada..."<<endl;
 
+}
+
+void Conexion::DestruirVista(){
+
+ PQclear(result);
 }
