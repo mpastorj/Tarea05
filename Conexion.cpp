@@ -5,6 +5,7 @@ using namespace std;
 
 PGconn *cnn = NULL;
 PGresult *result = NULL;
+FILE *archivo;
 
 class Conexion{
 
@@ -13,7 +14,8 @@ class Conexion{
  public:
 
  void conectar();
- void consulta(const char *consulta);    
+ void consulta(const char *consulta);
+ void ExportarArchivo();   
  void desconectar();   
 
 };
@@ -58,6 +60,23 @@ if (result != NULL) {
                 cout << endl;
             }
         }
+
+}
+
+void Conexion::ExportarArchivo(){
+
+
+archivo = fopen ( "estimaciones.csv", "w" );
+
+PQprintOpt  options = {0};
+
+                
+options.fieldSep = (char *) ",";  /* field separator */
+
+PQprint( archivo, result, &options );
+
+fclose ( archivo );
+
 
 }
 
