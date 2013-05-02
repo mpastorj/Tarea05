@@ -66,22 +66,6 @@ if (result != NULL) {
 
 void Conexion::CrearVista(const char *consulta){
 result = PQexec(cnn, consulta);
-
-if (result != NULL) {
-            int tuplas = PQntuples(result);
-            int campos = PQnfields(result);
-     
-            for (i=0; i<campos; i++) {
-                cout << PQfname(result,i) << " | ";
-            }
-
-            for (i=0; i<tuplas; i++) {
-                for (int j=0; j<campos; j++) {
-                    cout << PQgetvalue(result,i,j) << " | ";
-                }
-                cout << endl;
-            }
-        }
 }
 
 
