@@ -15,6 +15,7 @@ cout << "INTEGRANTES: " << endl;
 cout <<"- Marilyn Pastor Jaque"<< endl; 
 cout <<"- Monica Riquelme" << endl;
 cout <<"- Pedro Cuevas Meza" << endl;
+
 Conexion cn ;
 
 cn.conectar();
@@ -27,6 +28,7 @@ cn.consulta("SELECT c.asignatura AS ASIGNATURA,ROUND(AVG(a.nota),5) AS PROMEDIO,
 else if(strcmp(argv[1],"-v") == 0){
 cout << VERSION ;
 cout << endl;
+cn.consulta("select LOCALTIMESTAMP(0) as Fecha_y_hora_actual");
 
 }
 

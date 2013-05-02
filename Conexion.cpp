@@ -41,22 +41,19 @@ void Conexion::consulta(const char *consulta){
 result = PQexec(cnn, consulta);
 
 if (result != NULL) {
-            int tuplas = PQntuples(result);
-            int campos = PQnfields(result);
-            cout << "No. Filas:" << tuplas << endl;
-            cout << "No. Columnas:" << campos << endl;
+            int columnas = PQntuples(result);
+            int filas = PQnfields(result);
 
-            cout << "Los nombres de las columnas son:" << endl;
  	    cout << "--------------------------------" << endl;
 
-            for (i=0; i<campos; i++) {
+            for (i=0; i<filas; i++) {
                 cout << PQfname(result,i) << " | ";
             }
 
             cout << endl << "--------------------------------" << endl;
 
-            for (i=0; i<tuplas; i++) {
-                for (int j=0; j<campos; j++) {
+            for (i=0; i<columnas; i++) {
+                for (int j=0; j<filas; j++) {
                     cout << PQgetvalue(result,i,j) << " | ";
                 }
                 cout << endl;
