@@ -29,7 +29,10 @@ else if(strcmp(argv[1],"-v") == 0){
 cout << VERSION ;
 cout << endl;
 cn.consulta("select LOCALTIMESTAMP(0) as Fecha_y_hora_actual");
-
+}
+else if(strcmp(argv[1],"-a") == 0){
+cn.consulta("SELECT ROUND((AVG(a.nota)),1) AS ESTIMADO,a.estudiante_id from asignaturas_cursadas a, cursos c WHERE a.curso_id=c.curso_id AND c.asignatura <> 'CÁLCULO VECTORIAL' GROUP BY estudiante_id ORDER BY estudiante_id");
+cn.ExportarArchivo();
 }
 
 cn.desconectar();
