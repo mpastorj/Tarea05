@@ -15,7 +15,7 @@ Conexion cn ;
 
 cn.conectar();
 
-if (argv > 1){
+if (argc > 1){
 if(strcmp(argv[1], "-s") == 0){
 cn.consulta("SELECT c.asignatura AS ASIGNATURA,ROUND(AVG(a.nota),5) AS PROMEDIO, ROUND(STDDEV(a.nota),5) AS DESVIACION from asignaturas_cursadas a, cursos c WHERE a.curso_id=c.curso_id GROUP BY c.asignatura");
 }
@@ -32,7 +32,8 @@ else if(strcmp(argv[1],"-a") == 0){
 cn.consulta("SELECT ROUND((AVG(a.nota)),1) AS ESTIMADO,a.estudiante_id from asignaturas_cursadas a, cursos c WHERE a.curso_id=c.curso_id AND c.asignatura <> 'C√ÅLCULO VECTORIAL' GROUP BY estudiante_id ORDER BY estudiante_id");
 cn.ExportarArchivo();
 }
-else 
+}
+else{
 	cout << "InformaciÛn sobre el uso del software: Para utilizar este programa primero "<< endl; 
 	cout << "se debe ingresar alguna de las opciones en la lÌnea de comandos" << endl;
 	cout << "Si ordena al programa que se ejecute la opciÛn ì-i idî donde id es el "<< endl; 
@@ -46,6 +47,7 @@ else
 	cout << "Si ordena al programa que se ejecute la opciÛn ì-vî debe mostrar la fecha "<< endl;
 	cout << "y hora de compilaciÛn, la fecha y hora actual, la versiÛn del programa y "<< endl;
 	cout << "el nombre de los integrantes del grupo de trabajo" << endl;
+}
 
 cn.desconectar();
 
